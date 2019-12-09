@@ -47,7 +47,7 @@ public class Developpeur {
 	private Date dateDebutContrat;
 	
 	@ManyToMany(mappedBy="developpeurs")
-	private List <Tache> Taches;
+	private List <Tache> taches;
 
 	public Long getId() {
 		return id;
@@ -98,11 +98,11 @@ public class Developpeur {
 	}
 
 	public List<Tache> getTaches() {
-		return Taches;
+		return taches;
 	}
 
 	public void setTaches(List<Tache> taches) {
-		Taches = taches;
+		taches = taches;
 	}
 	
 	

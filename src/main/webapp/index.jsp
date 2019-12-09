@@ -14,7 +14,7 @@
 				<a class="text-white" href="/index">Home</a>
 			</div>
 			<div class="col-md-1">
-				<a class="text-white" href="/index">Developpeurs</a>
+				<a class="text-white" href="/developpeurs">Developpeurs</a>
 			</div>
 			<div class="col-md-1">
 				<a class="text-white" href="ajouterTache?idProjet=1">Nouvelle tache</a>
@@ -46,11 +46,15 @@
 						<tr>
 							<c:if test="${tache.colonne.id eq 1}">
 								<td>
-									<div>${tache.intitule}</div>
-								 	<form action="/modifColonne" method="post">
-								 		<input type="hidden" name="id" value=${tache.id}>
-										<button type="submit" class="btn btn-${tache.typeTache.couleur}">></button>
-									</form>
+									<div class="bg-${tache.typeTache.couleur} container" >
+									<div class="center">${tache.intitule}</div>
+										<div>
+											<form action="/nextColonne" method="post">
+									 			<input type="hidden" name="id" value=${tache.id}>
+												<button type="submit" class="btn btn-${tache.typeTache.couleur}">+</button>
+											</form>
+										</div>
+									</div>
 								</td>
 							</c:if>
 							<c:if test="${tache.colonne.id ne 1}">
@@ -58,11 +62,21 @@
 							</c:if>
 							<c:if test="${tache.colonne.id eq 2}">
 								<td>
-									<div>${tache.intitule}</div>
-								 	<form action="/modifColonne" method="post">
-								 		<input type="hidden" name="id" value=${tache.id}>
-										<button type="submit" class="btn btn-${tache.typeTache.couleur}">></button>
-									</form>
+									<div class="bg-${tache.typeTache.couleur} container" >
+									<div class="center">${tache.intitule}</div>
+									 	<div>
+									 		<form action="/previousColonne" method="post">
+									 			<input type="hidden" name="id" value=${tache.id}>
+												<button type="submit" class="btn btn-${tache.typeTache.couleur}">-</button>
+											</form>
+										</div>
+										<div>
+											<form action="/nextColonne" method="post">
+									 			<input type="hidden" name="id" value=${tache.id}>
+												<button type="submit" class="btn btn-${tache.typeTache.couleur}">+</button>
+											</form>
+										</div>
+									</div>
 								</td>
 							</c:if>
 							<c:if test="${tache.colonne.id ne 2}">
@@ -70,11 +84,21 @@
 							</c:if>
 							<c:if test="${tache.colonne.id eq 3}">
 								<td>
-									<div>${tache.intitule}</div>
-								 	<form action="/modifColonne" method="post">
-								 		<input type="hidden" name="id" value=${tache.id}>
-										<button type="submit" class="btn btn-${tache.typeTache.couleur}">></button>
-									</form>
+									<div class="bg-${tache.typeTache.couleur} container" >
+									<div class="center">${tache.intitule}</div>
+									 	<div>
+									 		<form action="/previousColonne" method="post">
+									 			<input type="hidden" name="id" value=${tache.id}>
+												<button type="submit" class="btn btn-${tache.typeTache.couleur}">-</button>
+											</form>
+										</div>
+										<div>
+											<form action="/nextColonne" method="post">
+									 			<input type="hidden" name="id" value=${tache.id}>
+												<button type="submit" class="btn btn-${tache.typeTache.couleur}">+</button>
+											</form>
+										</div>
+									</div>
 								</td>
 							</c:if>
 							<c:if test="${tache.colonne.id ne 3}">
@@ -82,11 +106,15 @@
 							</c:if>
 							<c:if test="${tache.colonne.id eq 4}">
 								<td>
-									<div>${tache.intitule}</div>
-								 	<form action="/modifColonne" method="post">
-								 		<input type="hidden" name="id" value=${tache.id}>
-										<button type="submit" class="btn btn-${tache.typeTache.couleur}">></button>
-									</form>
+									<div class="bg-${tache.typeTache.couleur} container" >
+									<div class="center">${tache.intitule}</div>
+									 	<div>
+									 		<form action="/previousColonne" method="post">
+									 			<input type="hidden" name="id" value=${tache.id}>
+												<button type="submit" class="btn btn-${tache.typeTache.couleur}">-</button>
+											</form>
+										</div>
+									</div>
 								</td>
 							</c:if>
 							<c:if test="${tache.colonne.id ne 4}">

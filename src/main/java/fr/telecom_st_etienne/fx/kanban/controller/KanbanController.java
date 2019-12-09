@@ -1,5 +1,6 @@
 package fr.telecom_st_etienne.fx.kanban.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.telecom_st_etienne.fx.kanban.business.Colonne;
+import fr.telecom_st_etienne.fx.kanban.business.Developpeur;
 import fr.telecom_st_etienne.fx.kanban.business.Tache;
 import fr.telecom_st_etienne.fx.kanban.business.TypeTache;
 import fr.telecom_st_etienne.fx.kanban.service.ClientService;
@@ -57,6 +59,18 @@ public class KanbanController {
 		mav.addObject("colonnes",colonneService.recupererColonnes());
 		return mav;
 	}
+	
+	@GetMapping(value = { "/developpeurs"})
+	public ModelAndView dev(Pageable pageable) {
+		ModelAndView mav = new ModelAndView("developpeurs");
+		mav.addObject("pageDeTaches", tacheService.recupererTaches(pageable));
+		mav.addObject("developpeurs", developpeurService.recupererDeveloppeurs());
+		mav.addObject("typeTaches", typeTacheService.recupererTypeTaches());
+		mav.addObject("projets", projetService.recupererProjets());
+		mav.addObject("clients", clientService.recupererClients());
+		mav.addObject("colonnes",colonneService.recupererColonnes());
+		return mav;
+	}
 	/***
 	 * 
 	 * @param pageable
@@ -78,26 +92,45 @@ public class KanbanController {
 			@RequestParam("intitule") String intitule,
 			@RequestParam("colonne") Long id_colonne,
 			@RequestParam("typeTache") Long id_typeTache,
-			@RequestParam("developpeur_id") List<Long> id_developpeurs,
+			@RequestParam("developpeur") List<Long> id_developpeurs,
 			@RequestParam("heuresEstimees") String heuresEstimees ){
+		List<Developpeur> developpeurs = new ArrayList();
 		Tache tache = new Tache(intitule,typeTacheService.recupererTypeTache(id_typeTache),colonneService.recupererColonne(id_colonne));
 		tache.setColonne(colonneService.recupererColonne(id_colonne));
 		tache.setNbHeuresPrevues(Integer.parseInt(heuresEstimees));
 		tache.setTypeTache(typeTacheService.recupererTypeTache(id_typeTache));
 		tache.setProjet(projetService.recupererProjet(ID_Projet));
+		for(Long id : id_developpeurs){
+			developpeurs.add(developpeurService.recupererDeveloppeur(id));
+		}
+		tache.setDeveloppeurs(developpeurs);
 		tacheService.ajouterTache(tache);
 		System.out.println("Nouvelle tache crée");
 		return new ModelAndView("redirect:/index");
 	}
 	
-	@PostMapping("/modifColonne")
-	public ModelAndView modifColonne(@RequestParam(name="id") Long id ) {
+	@PostMapping("/nextColonne")
+	public ModelAndView nextColonne(@RequestParam(name="id") Long id ) {
 		Tache tache = tacheService.recupererTache(id);
 		
 		System.out.println("Colonne actuelle: " + tache.getColonne().getContenu());
 		//tache.setColonne(colonneService.recupererColonne(1l));
 		//tacheService.deplacerTache(1, id);
 		tache.setColonne(colonneService.recupererColonne(tache.getColonne().getId()+1));
+		tacheService.enregistrerTache(tache);
+		System.out.println("Après enregistrement: " + tache.getColonne().getContenu());
+ 
+		System.out.println("id: "+id);
+		return new ModelAndView("redirect:/index");
+	}
+	@PostMapping("/previousColonne")
+	public ModelAndView previousColonne(@RequestParam(name="id") Long id ) {
+		Tache tache = tacheService.recupererTache(id);
+		
+		System.out.println("Colonne actuelle: " + tache.getColonne().getContenu());
+		//tache.setColonne(colonneService.recupererColonne(1l));
+		//tacheService.deplacerTache(1, id);
+		tache.setColonne(colonneService.recupererColonne(tache.getColonne().getId()-1));
 		tacheService.enregistrerTache(tache);
 		System.out.println("Après enregistrement: " + tache.getColonne().getContenu());
  

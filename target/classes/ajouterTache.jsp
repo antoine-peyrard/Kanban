@@ -15,7 +15,7 @@
 				<a class="text-white" href="/index">Home</a>
 			</div>
 			<div class="col-md-1">
-				<a class="text-white" href="/index">Developpeurs</a>
+				<a class="text-white" href="/developpeurs">Developpeurs</a>
 			</div>	
 		</div>
 	</div>
@@ -52,8 +52,7 @@
         <td><label for="developpeurs">listes des developpeurs:</label></td>
         <td><select multiple name="developpeur" required>
 	        <c:forEach items="${developpeurs}" var="d">
-	        	<hidden name="developpeur_id">${d.id }</hidden>
-	        	<option>${d.prenom} ${d.nom}
+	        	<option value=${d.id }>${d.id}
 	    	</c:forEach>
 	    	</select>
     	</td>
