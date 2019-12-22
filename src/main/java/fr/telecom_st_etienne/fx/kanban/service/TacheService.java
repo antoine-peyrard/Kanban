@@ -23,7 +23,7 @@ public interface TacheService {
 
 	Page<Tache> recupererTaches(Pageable pageable);
 
-	Tache ajouterTache(String intitule, TypeTache typeTache, Colonne colonne);
+	Tache ajouterTache(String intitule, TypeTache typeTache, Colonne colonne,List <Developpeur> developpeurs);
 
 	void enregistrerTache(Tache tache);
 	

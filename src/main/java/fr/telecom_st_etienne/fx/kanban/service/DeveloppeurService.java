@@ -7,5 +7,6 @@ public interface DeveloppeurService {
 	Developpeur ajouterDeveloppeur(String nom,String prenom);
 	List<Developpeur> recupererDeveloppeurs();
 	Developpeur recupererDeveloppeur(Long id);
+	List<Developpeur> recupererDeveloppeurList(List<Long> ids);
 
 }

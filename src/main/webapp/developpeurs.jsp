@@ -35,9 +35,28 @@
         	</div>
         	<div class="collapse" id="collapse${d.id }">
           		<div class="card-body">
-            		<p class="card-text">${d.taches}</p>
+          			<table class="table">
+					  <thead>
+					    <tr>
+					      <th scope="col">#</th>
+					      <th scope="col">Tache</th>
+					      <th scope="col">Etat</th>
+					      <th scope="col">Début</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+						  <c:forEach items="${d.taches}" var="tache">
+						    <tr>
+						      <th scope="row">${tache.id}</th>
+						      <td>${tache.intitule}</td>
+						      <td>${tache.colonne.contenu}</td>
+						      <td>${tache.dateCreation}</td>
+						    </tr>
+					    </c:forEach>
+					  </tbody>
+					</table>
             		<p>Email : ${d.email}</p>
-            		<p> Arrivé: ${d.dateDebutContrat}</p>
+            		<p> Date d'arrivée: ${d.dateDebutContrat}</p>
           		</div>
         	</div>
        	</c:forEach>

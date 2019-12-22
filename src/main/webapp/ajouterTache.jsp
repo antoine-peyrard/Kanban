@@ -52,7 +52,7 @@
         <td><label for="developpeurs">listes des developpeurs:</label></td>
         <td><select multiple name="developpeur" required>
 	        <c:forEach items="${developpeurs}" var="d">
-	        	<option value=${d.id }>${d.id}
+	        	<option value=${d.id }>${d.nom} ${d.prenom}
 	    	</c:forEach>
 	    	</select>
     	</td>

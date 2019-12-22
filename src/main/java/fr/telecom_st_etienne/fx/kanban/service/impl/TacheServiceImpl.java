@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import fr.telecom_st_etienne.fx.kanban.business.Colonne;
+import fr.telecom_st_etienne.fx.kanban.business.Developpeur;
 import fr.telecom_st_etienne.fx.kanban.business.Tache;
 import fr.telecom_st_etienne.fx.kanban.business.TypeTache;
 import fr.telecom_st_etienne.fx.kanban.dao.ColonneDao;
@@ -24,8 +25,9 @@ public class TacheServiceImpl implements TacheService {
 	private ColonneDao colonneDAO;
 
 	@Override
-	public Tache ajouterTache(String intitule,TypeTache typeTache, Colonne colonne) {
+	public Tache ajouterTache(String intitule,TypeTache typeTache, Colonne colonne,List<Developpeur> developpeurs) {
 		Tache tache = new Tache(intitule,typeTache,colonne);
+		tache.setDeveloppeurs(developpeurs);
 		tache = tacheDAO.save(tache);
 		return tache;
 	}

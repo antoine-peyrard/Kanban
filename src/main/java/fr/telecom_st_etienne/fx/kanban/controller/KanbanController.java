@@ -1,6 +1,7 @@
 package fr.telecom_st_etienne.fx.kanban.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -172,10 +173,10 @@ public class KanbanController {
 			colonneService.ajouterColonne("Terminé");// Terminé
 		}
 		if (tacheService.recupererTaches().isEmpty()) {
-			tacheService.ajouterTache("Développer Métier",typeTacheService.recupererTypeTache(1l),colonneService.recupererColonne(1l));
-			tacheService.ajouterTache("Développer DAO",typeTacheService.recupererTypeTache(2l),colonneService.recupererColonne(2l));
-			tacheService.ajouterTache("Développer Services",typeTacheService.recupererTypeTache(3l),colonneService.recupererColonne(3l));
-			tacheService.ajouterTache("Développer Contrôleur",typeTacheService.recupererTypeTache(1l),colonneService.recupererColonne(1l));
+			tacheService.ajouterTache("Développer Métier",typeTacheService.recupererTypeTache(1l),colonneService.recupererColonne(1l),developpeurService.recupererDeveloppeurs());
+			tacheService.ajouterTache("Développer DAO",typeTacheService.recupererTypeTache(2l),colonneService.recupererColonne(2l),developpeurService.recupererDeveloppeurList(new ArrayList<Long>(Arrays.asList(1l, 2l))));
+			tacheService.ajouterTache("Développer Services",typeTacheService.recupererTypeTache(3l),colonneService.recupererColonne(3l),developpeurService.recupererDeveloppeurList(new ArrayList<Long>(Arrays.asList(6l, 4l))));
+			tacheService.ajouterTache("Développer Contrôleur",typeTacheService.recupererTypeTache(1l),colonneService.recupererColonne(1l),developpeurService.recupererDeveloppeurList(new ArrayList<Long>(Arrays.asList((5l)))));
 		}
 	}
 }

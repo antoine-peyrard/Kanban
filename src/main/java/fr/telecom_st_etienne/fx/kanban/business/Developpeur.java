@@ -26,6 +26,7 @@ public class Developpeur {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
+		this.email = prenom.toLowerCase()+"."+nom.toLowerCase()+"@kanban.fr";
 	}
 
 	@Id
@@ -44,7 +45,7 @@ public class Developpeur {
 	@Min(value=5, message="Le mot de passe doit être de taille 5 minimum")
 	private String motDePasse;
 	@Temporal(TemporalType.DATE)
-	private Date dateDebutContrat;
+	private Date dateDebutContrat = new Date();
 	
 	@ManyToMany(mappedBy="developpeurs")
 	private List <Tache> taches;

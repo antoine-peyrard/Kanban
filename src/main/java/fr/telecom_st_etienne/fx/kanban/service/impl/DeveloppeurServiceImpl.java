@@ -1,5 +1,6 @@
 package fr.telecom_st_etienne.fx.kanban.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,14 @@ public class DeveloppeurServiceImpl implements DeveloppeurService{
 	@Override
 	public Developpeur recupererDeveloppeur(Long id) {
 		return developpeurDao.findOne(id);
+	}
+	@Override
+	public List<Developpeur> recupererDeveloppeurList(List<Long> ids) {
+		List <Developpeur> developpeurs = new ArrayList<Developpeur>();
+		for( Long idDeve : ids ) {
+            developpeurs.add(developpeurDao.findOne(idDeve));
+        }
+		return developpeurs;
 	}
 	
 	@Override
